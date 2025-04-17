@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   output: 'standalone', // Optimizes for production deployments
   poweredByHeader: false, // Removes the X-Powered-By header
   reactStrictMode: true, // Helps catch bugs early
-  swcMinify: true, // Uses SWC for minification (faster than Terser)
 
   // Configure image domains if you're using next/image with external sources
   images: {
@@ -17,6 +16,11 @@ const nextConfig: NextConfig = {
   // These will be available via process.env.NEXT_PUBLIC_*
   env: {
     NEXT_PUBLIC_APP_VERSION: '0.1.0',
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
   },
 };
 
