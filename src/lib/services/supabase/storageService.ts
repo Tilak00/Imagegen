@@ -1,4 +1,4 @@
-import { supabase } from '../../supabaseClient.ts'; // Relative path with extension
+import { supabase } from '../../supabaseClient'; // Relative path with extension
 
 class StorageService {
   public bucketName = 'ghibli-images'; // Ensure this matches your Supabase bucket name

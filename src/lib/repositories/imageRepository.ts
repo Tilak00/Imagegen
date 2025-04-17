@@ -1,4 +1,4 @@
-import { databaseService } from '../services/supabase/databaseService.ts'; // Relative path
+import { databaseService } from '../services/supabase/databaseService'; // Relative path
 // Import a model for transformation data if needed, or use 'any'/'unknown' for now
 // import { TransformationData } from '@/lib/models/transformationModel'; // Assuming this exists
 

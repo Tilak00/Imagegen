@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { imageRepository } from '../../repositories/imageRepository.ts'; // Relative path
-import { imageService } from '../../services/imageService.ts'; // Relative path
-import { TransformImageParams, TransformationResult } from '../../models/transformationModel.ts'; // Relative path
-import { supabase } from '../../supabaseClient.ts'; // Relative path
+import { imageRepository } from '../../repositories/imageRepository'; // Relative path
+import { imageService } from '../../services/imageService'; // Relative path
+import { TransformImageParams, TransformationResult } from '../../models/transformationModel'; // Relative path
+import { supabase } from '../../supabaseClient'; // Relative path
 
 // Define and export the structure for a single transformation record from DB
 export interface TransformationRecord {

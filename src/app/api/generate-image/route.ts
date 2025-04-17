@@ -1,6 +1,6 @@
 // src/app/api/generate-image/route.ts
 import { NextResponse } from 'next/server';
-import { openaiApi } from '../../../lib/api/openaiApi.ts'; // Relative path
+import { openaiApi } from '../../../lib/api/openaiApi'; // Relative path
 
 export async function POST(request: Request) {
   try {

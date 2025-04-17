@@ -1,6 +1,6 @@
-import { databaseService } from '../services/supabase/databaseService.ts'; // Relative path
-import { supabase } from '../supabaseClient.ts'; // Relative path
-import { User } from '../models/userModel.ts'; // Relative path
+import { databaseService } from '../services/supabase/databaseService'; // Relative path
+import { supabase } from '../supabaseClient'; // Relative path
+import { User } from '../models/userModel'; // Relative path
 
 // Define and export the structure of the profile data
 export interface UserProfileData {

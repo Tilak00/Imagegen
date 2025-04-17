@@ -1,6 +1,6 @@
 // src/app/api/generate-combined/route.ts
 import { NextResponse } from 'next/server';
-import { openaiApi } from '../../../lib/api/openaiApi.ts';
+import { openaiApi } from '../../../lib/api/openaiApi';
 
 export async function POST(request: Request) {
   try {

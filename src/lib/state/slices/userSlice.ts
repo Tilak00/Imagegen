@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { userRepository } from '../../repositories/userRepository.ts'; // Relative path
+import { userRepository } from '../../repositories/userRepository'; // Relative path
 // Assuming UserProfileData is the shape returned by the repository
-import { UserProfileData } from '../../repositories/userRepository.ts'; // Relative path
+import { UserProfileData } from '../../repositories/userRepository'; // Relative path
 
 interface UserState {
   profile: UserProfileData | null;

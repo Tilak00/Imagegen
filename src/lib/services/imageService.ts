@@ -1,8 +1,8 @@
-import { storageService } from './supabase/storageService.ts';
-import { databaseService } from './supabase/databaseService.ts';
-import { imageRepository } from '../repositories/imageRepository.ts'; // Relative path
-import { TransformationResult, TransformImageParams } from '../models/transformationModel.ts'; // Relative path
-import { supabase } from '../supabaseClient.ts'; // Relative path
+import { storageService } from './supabase/storageService';
+import { databaseService } from './supabase/databaseService';
+import { imageRepository } from '../repositories/imageRepository'; // Relative path
+import { TransformationResult, TransformImageParams } from '../models/transformationModel'; // Relative path
+import { supabase } from '../supabaseClient'; // Relative path
 
 class ImageService {
 
