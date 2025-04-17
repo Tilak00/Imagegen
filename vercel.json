@@ -7,5 +7,8 @@
     "NEXT_PUBLIC_SUPABASE_URL": "https://tyxvavusnmcxqsvgfktm.supabase.co",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5eHZhdnVzbm1jeHFzdmdma3RtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NDQ4NzQsImV4cCI6MjA1OTUyMDg3NH0.HxOUdyrWoB7sW8k8jHSWuhHqVDkmBg8qR0boP2e3810",
     "GEMINI_API_KEY": "AIzaSyA1y9QZMz_T_FWkwC29QsCxkp08oMLcXMc"
-  }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }

@@ -5,8 +5,16 @@ import { cookies } from 'next/headers';
 
 export async function createClient() {
   const cookieStore = await cookies(); // Await the cookies() promise
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+  // Remove quotes if they exist in the environment variables
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/^['"]+|['"]+$/g, '') || '';
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.replace(/^['"]+|['"]+$/g, '') || '';
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error('Missing Supabase environment variables');
+    console.log('NEXT_PUBLIC_SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.log('NEXT_PUBLIC_SUPABASE_ANON_KEY:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 10) + '...');
+  }
 
   return createServerClient(
     supabaseUrl,
