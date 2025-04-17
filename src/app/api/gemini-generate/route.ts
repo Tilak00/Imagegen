@@ -1,12 +1,8 @@
 // src/app/api/gemini-generate/route.ts
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-// Import the Gemini library dynamically to avoid webpack issues
-let GoogleGenerativeAI: any;
-let HarmCategory: any;
-let HarmBlockThreshold: any;
-
-// We'll initialize these in the route handler
+// Import the Gemini library directly
+import * as genai from '@google/genai';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
@@ -15,19 +11,6 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export async function POST(request: Request) {
   try {
-    // Dynamically import the Gemini library to avoid webpack issues
-    try {
-      const genaiModule = await import('@google/genai');
-      GoogleGenerativeAI = genaiModule.GoogleGenerativeAI;
-      HarmCategory = genaiModule.HarmCategory;
-      HarmBlockThreshold = genaiModule.HarmBlockThreshold;
-    } catch (importError) {
-      console.error("Error importing @google/genai:", importError);
-      return NextResponse.json(
-        { error: "Failed to load the Gemini API library. Please check your installation." },
-        { status: 500 }
-      );
-    }
     // Parse the request body
     const formData = await request.formData();
     const prompt = formData.get('prompt') as string;
@@ -75,7 +58,7 @@ export async function POST(request: Request) {
 
     try {
       // Initialize the Gemini API client
-      const genAI = new GoogleGenerativeAI(geminiApiKey);
+      const genAI = new genai.GoogleGenerativeAI(geminiApiKey);
 
       // For image generation, use the gemini-2.0-flash-exp-image-generation model
       // Note: This model requires both TEXT and IMAGE in responseModalities
@@ -103,20 +86,20 @@ export async function POST(request: Request) {
       // Set up safety settings
       const safetySettings = [
         {
-          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          category: genai.HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: genai.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
         },
         {
-          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          category: genai.HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+          threshold: genai.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
         },
         {
-          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          category: genai.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: genai.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
         },
         {
-          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-          threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+          category: genai.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+          threshold: genai.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
         },
       ];
 
