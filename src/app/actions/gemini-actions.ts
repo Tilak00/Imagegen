@@ -1,33 +1,6 @@
 'use server';
 
-import { createServerClient as createSupabaseServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
-
-// Initialize Supabase client for Server Actions
-const createServerClient = async () => {
-  const cookieStore = await cookies(); // Await the cookies() promise
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-  return createSupabaseServerClient(
-    supabaseUrl,
-    supabaseAnonKey,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
-        },
-        // Add set and remove if your actions modify auth state
-        // set(name: string, value: string, options: CookieOptions) {
-        //   cookieStore.set({ name, value, ...options });
-        // },
-        // remove(name: string, options: CookieOptions) {
-        //   cookieStore.delete({ name, ...options });
-        // },
-      },
-    }
-  );
-};
+import { createClient } from '@/lib/supabase/server';
 
 export async function generateImageWithGemini(
   prompt: string,
@@ -39,7 +12,7 @@ export async function generateImageWithGemini(
     console.log(`Server Action: Generating with Gemini: Prompt: "${prompt}", Mode: ${mode}, Image: ${imageBase64 ? 'Yes' : 'No'}`);
 
     // Get the Gemini API key
-    const supabase = await createServerClient(); // Await the client creation
+    const supabase = await createClient(); // Await the client creation
     let geminiApiKey = process.env.GEMINI_API_KEY || '';
 
     // If not in environment variables, try to get from Supabase
