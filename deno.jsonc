@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    // Match relevant settings from tsconfig.json for consistency
+    "jsx": "react-jsx", // Deno prefers 'react-jsx' or 'react-jsxdev'
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext" // Deno typically uses esnext
+  },
+  "lint": {
+    "rules": {
+      // Optional: Add any specific Deno lint rules if needed
+      "tags": ["recommended"],
+      "exclude": ["no-explicit-any"] // Example: exclude a rule if needed
+    }
+  },
+  "fmt": {
+    // Optional: Configure Deno's formatter if you use it
+    "options": {
+      "useTabs": false,
+      "lineWidth": 80,
+      "indentWidth": 2,
+      "singleQuote": true
+    }
+  },
+  "tasks": {
+    // Optional: Define Deno tasks if needed
+  },
+  "imports": {
+    // Map the path alias from tsconfig.json for Deno LSP
+    "@/": "./src/"
+  },
+  // If you have node_modules resolution issues with Deno LSP,
+  // you might need to enable unstable node/npm support, but try without first.
+  // "unstable": ["npm", "node"]
+}
