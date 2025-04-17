@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build --no-lint",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npm install @supabase/ssr"
   },
   "dependencies": {
     "@react-three/drei": "^10.0.6",
